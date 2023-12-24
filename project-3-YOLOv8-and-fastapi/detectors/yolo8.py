@@ -38,10 +38,6 @@ Our __init__ takes a single parameter, chunked, which is the raw binary image st
 -> gets all of the supported class names for our pretrained model
 '''
 class YoloV8ImageObjectDetection:
-    # Path to a model. yolov8n.pt means download from PyTorch Hub
-    PATH = os.environ.get("YOLO_WEIGHTS_PATHS", "yolo8.py")
-    # confidence threshold
-    CONF_THRESH = float(os.environ.get("YOLO_CONF_THRESH", "0.7"))
     def __init__(self, chunked: bytes = None):
         """
         Initializes a yolov8 detector with a binary image
@@ -69,7 +65,7 @@ class YoloV8ImageObjectDetection:
         Returns:
             model (Model) - Trained Pytorch model
         """
-        model = YOLO(YoloV8ImageObjectDetection.PATH)
+        model = YOLO("yolov8m.pt")
         return model
     
 
@@ -123,7 +119,7 @@ class YoloV8ImageObjectDetection:
         frame = [frame]
         results = self.model(
             frame,
-            conf = YoloV8ImageObjectDetection.CONF_THRESH,
+            conf = 0.7,
             save_conf = True
         )
         return results

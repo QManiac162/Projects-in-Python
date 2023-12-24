@@ -36,16 +36,20 @@ images = []
 async def yolo_image_upload(file: UploadFile) -> ImageAnalysisResponse:
     """
     Takes a multi-part upload image and runs yolo8 on it to detect objects
+
     Arguments:
         file(UploadFile): The multi-part upload file
+
     Returns:
         response(ImageAnalysisResponse): The image ID and the labels in the PyDantic object
+
     Example curl:
         curl -X 'POST'\
             'http://localhost/yolo/'\
             -H 'accept: application/json' \
             -H 'Content-Type: multipart/form-data' \
             -F 'file=@image.jpg;type=image/jpeg'
+
     Example Return:
         {
             "id": 1,
@@ -88,6 +92,7 @@ async def yolo_image_download(image_id: int) -> Response:
         curl -X 'GET' \
             'http://localhost/yolo/1' \
             -H 'accept: image/png'
+            
     Example Return: A Binary Image
     """
     try:
