@@ -1,1 +1,6 @@
-# Movie Recommendor: TMDB and streamlit
+# Movie recommender
+
+## to run the app
+```
+python app.py
+```
